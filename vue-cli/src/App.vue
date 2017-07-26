@@ -14,12 +14,16 @@ export default {
 @import 'assets/css/cormalize.css';
 	html{
 		font-size: 100px;
+		font-weight: 500;
 	}
 	@font-face {
-		font-family: 'iconfont';
-		src: url('http://at.alicdn.com/t/font_gsgwcsx3n093haor.eot');
-		src: url('http://at.alicdn.com/t/font_gsgwcsx3n093haor.eot?#iefix') format('embedded-opentype'), url('http://at.alicdn.com/t/font_gsgwcsx3n093haor.woff') format('woff'), url('http://at.alicdn.com/t/font_gsgwcsx3n093haor.ttf') format('truetype'), url('http://at.alicdn.com/t/font_gsgwcsx3n093haor.svg#iconfont') format('svg');
-	}
+  font-family: 'iconfont';  /* project id 363070 */
+  src: url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.eot');
+  src: url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.eot?#iefix') format('embedded-opentype'),
+  url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.woff') format('woff'),
+  url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.ttf') format('truetype'),
+  url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.svg#iconfont') format('svg');
+}
 	
 	.iconfont {
 		font-family: 'iconfont';

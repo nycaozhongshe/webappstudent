@@ -4,6 +4,7 @@ import index from 'views/index.vue'
 import login from 'views/login.vue'
 import notF from 'views/404.vue'
 import vindex from 'views/index/index.vue'
+import details from 'views/details/index.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -19,7 +20,12 @@ export default new Router({
 				//          redirect: 'hello',
 				component: vindex,
 			}]
-
+		},
+		{
+				path: '/details',
+				name: '/details',
+				//          redirect: 'hello',
+				component: details,
 		},
 		{
 			path: '/login',

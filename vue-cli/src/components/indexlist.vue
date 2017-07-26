@@ -1,9 +1,10 @@
 <template>
 	<div class="wrapper-item">
 		<div class="title">首页</div>
+		
 		<div class="index-list clearfix">
 			<div class="index-item">
-				<span class="iconfont item-logo">&#xe689;</span> 通知公告
+				<router-link to="/details" tag='span'><span class="iconfont item-logo">&#xe689;</span> 通知公告</router-link>
 			</div>
 			<div class="index-item">
 				<span class="iconfont item-logo">&#xe689;</span> 我的课程
@@ -27,14 +28,16 @@
 				<span class="iconfont item-logo">&#xe689;</span> 我的评教
 			</div>-->
 		</div>
+
 	</div>
 </template>
 
 <script>
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped="scoped">
 	.wrapper-item {
+		width: 100%;
 		.title {
 			text-align: left;
 			padding-left: .2rem;
@@ -45,6 +48,7 @@
 			line-height: .3rem;
 		}
 		.index-list {
+			width: 100%;
 			.index-item {
 				width: 25%;
 				float: left;
