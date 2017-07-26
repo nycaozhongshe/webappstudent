@@ -62,8 +62,8 @@
 		top: 0;
 		background: #26a2ff;
 		vertical-align: middle;
-		line-height: .6rem;
-		height: .6rem;
+		line-height: .5rem;
+		height: .5rem;
 		color: #fff;
 		.logo{
 			font-size: .24rem;

@@ -14,8 +14,9 @@
 			<router-link to='/games' tag='span'>游戏</router-link>
 			<router-link to='/music' tag='span'>音乐</router-link>
 		</div>
-
-		<router-view></router-view>
+		<keep-alive>
+			<router-view></router-view>
+		</keep-alive>
 	</div>
 </template>
 
@@ -49,15 +50,15 @@
 		top: 0;
 		background: #26a2ff;
 		vertical-align: middle;
-		line-height: .6rem;
-		height: .6rem;
+		line-height: .5rem;
+		height: .5rem;
 		.login {
 			font-size: .3rem;
 			float: left;
 			width: 25%;
 			color: #fff;
 		}
-		.title{
+		.title {
 			float: left;
 			width: 50%;
 		}

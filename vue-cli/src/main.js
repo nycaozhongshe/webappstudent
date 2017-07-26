@@ -5,6 +5,7 @@ import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import 'muse-ui/dist/theme-light.css' 
 import  'assets/js/filter.js'
+import FastClick from 'fastclick'
 // ajax 请求
 import axios from 'axios'
 Vue.prototype.$http = axios
