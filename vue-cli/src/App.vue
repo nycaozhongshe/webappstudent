@@ -18,6 +18,7 @@ export default {
 		font-size: 100px;
 		font-weight: 500;
 	}
+
 	@font-face {
   font-family: 'iconfont';  /* project id 363070 */
   src: url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.eot');
@@ -40,6 +41,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: .6rem;
-  
+  height: 6rem;
+  overflow-y: auto;
 }
+#app::-webkit-scrollbar{
+   display: none;
+ }
 </style>

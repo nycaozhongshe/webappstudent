@@ -57,7 +57,19 @@
 				if(this.input1 && this.inputp){
 					//如果不对
 					this.passwordFalse = true
-					setTimeout(() => this.passwordFalse = false, 3000)
+				var formData=' username='+this.input1+'&password='+ this.inputp
+            this.$http.post(url,formData).then(function(data){
+                if(data.json().state=="success"){
+                    setTimeout(function () {
+                        console.log("success");  
+                    }, 2000);       
+                }           
+            }).catch(function(){
+              console.log("服务器异常！");
+            });
+            
+
+        }
 					//假设密码和账号都对返回格式也对
 					//验证成功后跳到主页
 					this.$router.push('/index')
