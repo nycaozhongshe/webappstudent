@@ -1,18 +1,16 @@
 <template>
 	<div class="main_container">
-
 		<header class="header">
-			<router-link to="/login" slot="left">
+			<router-link to="/information" slot="left">
 				<span class="iconfont login">&#xe689;</span>
 			</router-link>
-			<div class="title">测试学校</div>
+			<div class="title">测试学校管理系统</div>
 		</header>
-
 		<div class="nav">
 			<router-link to='/index' tag='span'>主页</router-link>
-			<router-link to='/posts' tag='span'>成绩</router-link>
-			<router-link to='/games' tag='span'>游戏</router-link>
-			<router-link to='/music' tag='span'>音乐</router-link>
+			<router-link to='/cultivate' tag='span'>成绩</router-link>
+			<router-link to='/personinfo' tag='span'>游戏</router-link>
+			<router-link to='/information' tag='span'>我的</router-link>
 		</div>
 		<keep-alive>
 			<router-view></router-view>
@@ -25,7 +23,10 @@
 		data() {
 			return {
 				//todo 这里是data区域
-
+				nav1:'',
+				nav2:'',
+				nav3:'',
+				nav4:'',				
 			}
 		},
 		components: {
@@ -52,6 +53,7 @@
 		vertical-align: middle;
 		line-height: .5rem;
 		height: .5rem;
+		z-index: 10000;
 		.login {
 			font-size: .3rem;
 			float: left;
@@ -61,6 +63,7 @@
 		.title {
 			float: left;
 			width: 50%;
+			color: #fff;
 		}
 	}
 	
@@ -71,6 +74,7 @@
 		left: 0;
 		font-size: .14rem;
 		background: #fff;
+		z-index: 10001;
 		span {
 			width: 25%;
 			display: block;

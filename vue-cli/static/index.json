@@ -1,0 +1,205 @@
+{
+	"confirmMsg": "",
+	"forwardUrl": "",
+	"message": "",
+	"objData": "",
+	"statusCode": "200",
+	"strData": "",
+	"token": "",
+	"data": [{"title":"index","rows" : [{
+		"id": "1",
+		"display": "通知公告",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{
+	"id": "2",
+		"display": "我的课表",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{
+	"id": "3",
+		"display": "我的成绩",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{
+	"id": "4",
+		"display": "调课信息",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{
+	"id": "5",
+		"display": "我的申请",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{
+	"id": "6",
+		"display": "师生互动",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{
+	"id": "7",
+		"display": "学业预警",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},{
+	"id": "8",
+		"display": "我的评教",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	}
+	
+	]},
+	{"title":"personInfo" ,"rows" :[
+	{	"id": "9",
+		"display": "学期注册",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "10",
+		"display": "个人信息",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "11",
+		"display": "变更申请",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "12",
+		"display": "密码修改",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "13",
+		"display": "照片核对",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "14",
+		"display": "考试报名",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	}
+	
+	]},
+	{"title":"cultivate" ,"rows" :[
+	{	"id": "15",
+		"display": "方案查询",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "10",
+		"display": "个人计划",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "10",
+		"display": "开课查询",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "10",
+		"display": "选课结果",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "10",
+		"display": "免修申请",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	},
+	{	"id": "10",
+		"display": "排课信息",
+		"imageUrl": "",
+		"position": "",
+		"moduleld": "",
+		"permissionUrl": "",
+		"parentId": "",
+		"enabled": "1"		
+	}
+	]}
+	]
+	
+}

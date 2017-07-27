@@ -1,0 +1,12 @@
+{
+	"statusCode": "200",
+
+	"message": "正确",
+	"data": [
+		{
+			"userID":"1",
+			"userName":"张山"
+		} 
+		
+	]
+}

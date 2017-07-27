@@ -36,5 +36,6 @@
 		position: fixed;
 		height: 6.67rem;
 		text-align: center;
+		position:999;
 	}
 </style>

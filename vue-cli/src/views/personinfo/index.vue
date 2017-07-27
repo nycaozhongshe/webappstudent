@@ -13,8 +13,8 @@
 				</div>
 			</div>
 		</div>-->
-		<div class="wrapper-item" >
-			
+		<div class="wrapper-item">
+
 			<div class="index-list clearfix">
 				<div class="index-item" v-for="pro in contentList.rows">
 					<router-link to="/details" tag='div'>
@@ -38,32 +38,13 @@
 		},
 		created() {
 			setTimeout(() => this.pageShow = false, 1000)
-			this.getApi()
 		},
 		methods: {
-			getApi() {
-				this.$http.get('../static/index.json')
-					.then((response) => {
-						if(response.data.statusCode == 200) {
-						 let data = response.data.data
-							this.contentList = data[0]
-							this.$bus.$emit('info', data[1])
-						} else {
-							this.prompt = '服务器响应失败'
-							this.page = true
-						}
-					})
-					.catch((error) => {
-//						this.prompt = '服务器响应失败'
-//						this.page = true
-//						
-					})
-			},
 			go() {
 				window.history.go(-1);
 			},
 			pageDisplay() {
-					
+
 			}
 		},
 		mounted() {

@@ -4,17 +4,16 @@
 
 			<div class="login-form">
 				<div class="login-logo"><img src="../../static/logo.png" class="login-logo-img" /></div>
-				<input type="text" placeholder="账号" autofocus="autofocus" id="account" v-model="input1" />
-				<input type="password" placeholder="密码" id="password" v-model="inputp" />
-				<label for="account" class="iconfont">&#xe61f;</label>
-				<label for="password" class="iconfont">&#xe6b2;</label>
-				<div class="botton" @click="commit">
+				<form @submit.prevent="submit">
+					<input type="text" placeholder="账号" autofocus="autofocus" id="account" v-model="user.name" />
+					<input type="password" placeholder="密码" id="password" v-model="user.password" />
+					<label for="account" class="iconfont">&#xe61f;</label>
+					<label for="password" class="iconfont">&#xe6b2;</label>
 					<!--<router-link to="/index" tag='span'>登陆</router-link>-->
-					登陆
-				</div>
+					<input type="submit" value="登陆" class="botton">
+				</form>
 				<div class="about">关于我们</div>
-				<div class="tip" v-if='enter'>账号/密码不能为空</div>
-				<div class="tip" v-if="passwordFalse">密码错误</div>
+				<div class="tip" v-if='tip.show'>{{tip.txt}}</div>
 			</div>
 		</div>
 		<!--<vue-input-code span-size="20px" type="number" :number="5" height="50px" span-color="#f35252" input-color="#3498db" input-size="24px" :code="code" :getinput="getInput" :success="success"></vue-input-code>-->
@@ -26,10 +25,14 @@
 		data() {
 			return {
 				//todo 这里是data区域
-				input1: '',
-				inputp: '',
-				enter: false,
-				passwordFalse: false
+				user: {
+					name: '',
+					password: '',
+				},
+				tip: {
+					show: false,
+					txt: ""
+				},
 			}
 		},
 		components: {
@@ -40,44 +43,52 @@
 		},
 		methods: {
 			//TODO 方法区
-			//			judgeAccount(){
-			//				  console.log('账号')
-			//			},
-			//			judgePassword(){
-			//				  console.log('密码')
-			//				
-			//			}
-			commit() {
-				var reg = new RegExp('^[a-zA-Z\d]\w{3,11}[a-zA-Z\d]$') //验证账号
-				//					if(reg.test(this.Input1)) {
-				//						console.log('zh')
-				//					} else {
-				//						console.log('false')
-				//					}
-				if(this.input1 && this.inputp){
+			submit() {
+				if(this.user.name && this.user.password) {
 					//如果不对
-					this.passwordFalse = true
-				var formData=' username='+this.input1+'&password='+ this.inputp
-            this.$http.post(url,formData).then(function(data){
-                if(data.json().state=="success"){
-                    setTimeout(function () {
-                        console.log("success");  
-                    }, 2000);       
-                }           
-            }).catch(function(){
-              console.log("服务器异常！");
-            });
-            
-
-        }
-					//假设密码和账号都对返回格式也对
-					//验证成功后跳到主页
-					this.$router.push('/index')
+					this.getApi()
 				} else {
-					this.enter = true
-					setTimeout(() => this.enter = false, 3000)
+					this.tip.txt = '账号或密码不能为空'
+					this.tipShow()
 				}
 			},
+			getApi() {
+				var formData = JSON.stringify(this.user); // 这里才是你的表单数据
+				this.$http.get('../static/state.json', formData).then((response) => {
+					// success callback
+					let state = response.data.statusCode
+					if(state == 200) {
+						//密码和账号都对
+						//验证成功后跳到主页
+						window.localStorage.setItem('jndxyjsuser', this.user.name)
+						window.localStorage.setItem('jndxyjspass', this.user.password)
+						this.$router.push('/index')
+					} else if(state == 300) {
+						this.tip.txt = '服务器响应错误'
+						this.tipShow()
+					} else if(state == 301) {
+						this.tip.txt = '登陆超时'
+						this.tipShow()
+					} else if(state == 303) {
+						this.tip.txt = '重复提交'
+						this.tipShow()
+					} else if(state == 401) {
+						this.tip.txt = '账号或密码错误'
+						this.tipShow()
+					} else if(state == 500) {
+						this.tip.txt = '服务器响应错误'
+						this.tipShow()
+					}
+				}, (response) => {
+					this.tip.txt = '服务器错误'
+					this.tipShow()
+				});
+
+			},
+			tipShow() {
+				this.tip.show = true
+				setTimeout(() => this.tip.show = false, 3000)
+			}
 
 		},
 		mounted: function() {
@@ -115,9 +126,9 @@
 			padding-left: .4rem;
 			outline-color: #69b3f2;
 			height: .5rem;
-			border-radius: 8px;
+			border-radius: 4px;
 			/*outline: 30px solid #cd0000;*/
-			-moz-outline-radius: 8px;
+			-moz-outline-radius: 4px;
 			border: 1px solid #ddd;
 			font-size: .14rem;
 		}
@@ -129,6 +140,7 @@
 			height: .4rem;
 			margin: .2rem auto;
 			line-height: .4rem;
+			padding: 0;
 		}
 		.about {
 			font-size: .14rem;
@@ -137,7 +149,7 @@
 		}
 		.tip {
 			position: fixed;
-			width: 1.6rem;
+			width: 2rem;
 			height: .24rem;
 			line-height: .24rem;
 			top: 4rem;
@@ -146,7 +158,7 @@
 			background: #666;
 			border-radius: 30px;
 			color: #fff;
-			font-size: .14rem;
+			font-size: 12px;
 		}
 	}
 </style>
