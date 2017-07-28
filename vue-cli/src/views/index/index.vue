@@ -13,11 +13,10 @@
 				</div>
 			</div>
 		</div>-->
-		<div class="wrapper-item" >
-			
+		<div class="wrapper-item">
 			<div class="index-list clearfix">
 				<div class="index-item" v-for="pro in contentList.rows">
-					<router-link to="/details" tag='div'>
+					<router-link :to="{ path:'/details', query: {id: pro.id,title:pro.display} }">
 						<img src="../../../static/20150407120602871.jpg" class="item-logo" />
 						<span>{{pro.display}}</span>
 					</router-link>
@@ -28,6 +27,7 @@
 </template>
 
 <script>
+	import { mapActions, mapState } from 'vuex'
 	export default {
 		data() {
 			return {
@@ -38,36 +38,35 @@
 		},
 		created() {
 			setTimeout(() => this.pageShow = false, 1000)
-			this.getApi()
+			this.getIndexApi()
 		},
 		methods: {
-			getApi() {
-				this.$http.get('../static/index.json')
-					.then((response) => {
-						if(response.data.statusCode == 200) {
-						 let data = response.data.data
-							this.contentList = data[0]
-							this.$bus.$emit('info', data[1])
-						} else {
-							this.prompt = '服务器响应失败'
-							this.page = true
-						}
-					})
-					.catch((error) => {
-//						this.prompt = '服务器响应失败'
-//						this.page = true
-//						
-					})
-			},
+			...mapActions([
+				'getIndexApi'
+			]),
 			go() {
 				window.history.go(-1);
 			},
 			pageDisplay() {
-					
+
 			}
 		},
 		mounted() {
 
+		},
+		computed: {
+			...mapState(['indexData', 'page', 'tipTxt'])
+		},
+		watch: {
+			indexData() {
+				this.contentList = this.indexData[0]
+			},
+			page() {				
+			setTimeout(() => this.pageShow = this.page, 1000)					
+			},
+			tipTxt() {
+				this.prompt = this.tipTxt
+			}
 		}
 	}
 </script>
@@ -76,7 +75,6 @@
 	.index-wrapper {
 		margin-bottom: .6rem;
 	}
-	
 	.wrapper-item {
 		width: 100%;
 		.title {

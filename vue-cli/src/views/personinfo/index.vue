@@ -14,7 +14,6 @@
 			</div>
 		</div>-->
 		<div class="wrapper-item">
-
 			<div class="index-list clearfix">
 				<div class="index-item" v-for="pro in contentList.rows">
 					<router-link to="/details" tag='div'>
@@ -28,6 +27,7 @@
 </template>
 
 <script>
+	import { mapActions, mapState } from 'vuex'
 	export default {
 		data() {
 			return {
@@ -37,9 +37,13 @@
 			}
 		},
 		created() {
-			setTimeout(() => this.pageShow = false, 1000)
+			setTimeout(() => this.pageShow = false, 500)
+			this.getIndexApi()
 		},
 		methods: {
+			...mapActions([
+				'getIndexApi'
+			]),
 			go() {
 				window.history.go(-1);
 			},
@@ -49,6 +53,20 @@
 		},
 		mounted() {
 
+		},
+		computed: {
+			...mapState(['indexData', 'page', 'tipTxt'])
+		},
+		watch: {
+			indexData() {
+				this.contentList = this.indexData[1]
+			},
+			page() {
+				this.pageShow = this.page
+			},
+			tipTxt() {
+				this.prompt = tipTxt
+			}
 		}
 	}
 </script>

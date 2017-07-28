@@ -6,10 +6,10 @@
 			</router-link>
 			<div class="title">测试学校管理系统</div>
 		</header>
-		<div class="nav">
-			<router-link to='/index' tag='span'>主页</router-link>
-			<router-link to='/cultivate' tag='span'>成绩</router-link>
-			<router-link to='/personinfo' tag='span'>游戏</router-link>
+		<div class="nav" v-if="action">
+			<router-link to='/index' tag='span'>{{nav1}}</router-link>
+			<router-link to='/personinfo' tag='span'>{{nav2}}</router-link>
+			<router-link to='/cultivate' tag='span'>{{nav3}}</router-link>
 			<router-link to='/information' tag='span'>我的</router-link>
 		</div>
 		<keep-alive>
@@ -19,14 +19,11 @@
 </template>
 
 <script type="text/ecmascript-6">
+	import { mapState } from 'vuex'
 	export default {
 		data() {
 			return {
-				//todo 这里是data区域
-				nav1:'',
-				nav2:'',
-				nav3:'',
-				nav4:'',				
+				navShow: false
 			}
 		},
 		components: {
@@ -34,6 +31,7 @@
 		},
 		computed: {
 			//TODO 计算区
+			...mapState(['nav1', 'nav2', 'nav3', 'action'])
 		},
 		methods: {
 			//TODO 方法区
@@ -82,6 +80,9 @@
 			height: .6rem;
 			line-height: .6rem;
 			border-top: 1px solid #ccc;
+		}
+		.router-link-active {
+			color: #26a2ff;
 		}
 	}
 </style>
