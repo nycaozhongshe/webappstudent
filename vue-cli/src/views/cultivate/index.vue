@@ -94,7 +94,7 @@
 				float: left;
 				border: 1px solid #f9f9f9;
 				padding-bottom: .1rem;
-				font-size: 14px;
+				font-size: .14rem;
 				.item-logo {
 					display: block;
 					width: 30%;

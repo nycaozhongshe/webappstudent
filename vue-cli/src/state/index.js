@@ -13,14 +13,21 @@ const store = new Vuex.Store({
 		tipTxt: '页面正在加载中',
 		page: false,
 		action: false,
+		//
+		indexTitle:'',
 		//details
 		loaddingShow: true,
 		//details id = 1
-		indexId1list: []
+		indexId1list: [],
+		//details id = 2
+		indexId2list: [],
 	},
 	actions: {
 		detailsLoaddinghide(context) {
 			context.state.loaddingShow = false
+		},
+		detailsLoaddingShow(context) {
+			context.state.loaddingShow = true
 		},
 		getIndexApi(context) {
 			axios({
@@ -60,8 +67,7 @@ const store = new Vuex.Store({
 					// })        
 				}).then((response) => {
 					response.data.title = '通知'					
-					context.state.indexId1list[0] = response.data 
-					
+					context.state.indexId1list[0] = response.data 					
 				})
 				.catch((error) => {
 					context.state.indexId1list[0] = {rows:''}
@@ -76,19 +82,19 @@ const store = new Vuex.Store({
 					context.state.indexId1list[1] = response.data 	
 				})
 				.catch((error) => {					
-					context.state.indexId1list[0] = {rows:''}					
+					context.state.indexId1list[1] = {rows:''}					
 				}),
 				axios({
-					method: 'post',
+					method: 'get',
 //					url: '/km-gradms-core-server/common/msg/sysMessageScope/loadSysMessageScopeList',
-					data: 'msgtzType=3'		        
-					url: '../static/index-id-1.json',  					
-				}).then((response) => {
+					data: 'msgtzType=3',	        
+					url: '../static/index-id-1.json',					
+				}).then((response) => {					
 					response.data.title = '资讯'					
 					context.state.indexId1list[2] = response.data				
 				})
 				.catch((error) => {
-					context.state.indexId1list[0] = {rows:''}				
+					context.state.indexId1list[2] = {rows:''}				
 				})
 		},
 		getIndexId2Api(context) {
@@ -96,16 +102,31 @@ const store = new Vuex.Store({
 					method: 'get',
 					url: '../static/db.json',
 				}).then((response) => {
-					console.log(response.data)
+					context.state.indexId2list = response.data.data				
 				})
 				.catch((error) => {
 					console.log('错误')
 					setTimeout(() => context.state.loaddingShow = true, 1000)
 				})
 		},
+		getIndexId3Api(context,{url,method,data,res}) {
+			axios({
+					method: method || 'get',
+					url: url,
+					data:data 
+				}).then((response) => {
+					res(response)			
+				})
+				.catch((error) => {
+					console.log('错误')
+//					error(error)
+				})
+		}
 	},
 	mutations: {
-
+			modifyAgent(state,val){
+				state.indexTitle = val
+			},
 	},
 	getters: {
 

@@ -2,18 +2,22 @@
 	<div class="index-wrapper">
 		<loadding :show='pageShow' :txt="prompt"></loadding>
 		<!--直接渲染一个页面-->
-		<!--<div class="wrapper-item" v-for="item in contentList">
+		
+		<div class="wrapper-item" v-for="item in contentList">
 			<div class="title">{{item.title}}</div>
 			<div class="index-list clearfix">
 				<div class="index-item" v-for="pro in item.rows">
-					<router-link to="/details" tag='div'>
+					<router-link :to="{ path:'/details', query: {id: pro.id,title:pro.display} }" tag='div'>
 						<img src="../../../static/20150407120602871.jpg" class="item-logo" />
 						<span>{{pro.display}}</span>
 					</router-link>
 				</div>
 			</div>
-		</div>-->
-		<div class="wrapper-item">
+		</div>
+		
+		<!--分三個部分渲染-->
+		
+		<!--<div class="wrapper-item">
 			<div class="index-list clearfix">
 				<div class="index-item" v-for="pro in contentList.rows">
 					<router-link :to="{ path:'/details', query: {id: pro.id,title:pro.display} }">
@@ -22,7 +26,7 @@
 					</router-link>
 				</div>
 			</div>
-		</div>
+		</div>-->
 	</div>
 </template>
 
@@ -31,12 +35,13 @@
 	export default {
 		data() {
 			return {
-				contentList: [],
+				contentList: [],	
 				prompt: '',
 				pageShow: true
 			}
 		},
 		created() {
+//			this.indexTitle = this.
 			setTimeout(() => this.pageShow = false, 1000)
 			this.getIndexApi()
 		},
@@ -55,11 +60,11 @@
 
 		},
 		computed: {
-			...mapState(['indexData', 'page', 'tipTxt'])
+			...mapState(['indexData', 'page', 'tipTxt', 'indexTitle'])
 		},
 		watch: {
 			indexData() {
-				this.contentList = this.indexData[0]
+				this.contentList = this.indexData
 			},
 			page() {				
 			setTimeout(() => this.pageShow = this.page, 1000)					
@@ -89,14 +94,14 @@
 		.index-list {
 			width: 100%;
 			.index-item {
-				width: 50%;
+				width: 25%;
 				float: left;
 				border: 1px solid #f9f9f9;
 				padding-bottom: .1rem;
-				font-size: 14px;
+				font-size: .14rem;
 				.item-logo {
 					display: block;
-					width: 30%;
+					width: 50%;
 					height: auto;
 					border-radius: 50%;
 					margin: .1rem auto;

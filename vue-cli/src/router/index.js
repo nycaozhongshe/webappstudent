@@ -5,6 +5,7 @@ import login from 'views/login.vue'
 import notF from 'views/404.vue'
 import vindex from 'views/index/index.vue'
 import details from 'views/index/details/index.vue'
+import detailsinfo from 'views/index/details/info/index.vue'
 import information from 'views/information/index.vue'
 import personinfo from 'views/personinfo/index.vue'
 import cultivate from 'views/cultivate/index.vue'
@@ -57,6 +58,14 @@ const router = new Router({
 			meta: {
 				requireAuth: true, // 添加该字段，表示进入这个路由是需要登录的
 			},
+			children:[{
+					path: '/detailsinfo',
+					name: 'detailsinfo',
+					component: detailsinfo,
+					meta: {
+						requireAuth: true, // 添加该字段，表示进入这个路由是需要登录的
+					},
+			}]
 		},
 		{
 			path: '/login',

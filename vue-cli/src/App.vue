@@ -14,18 +14,15 @@
 
 <style>
 	@import 'assets/css/cormalize.css';
-	html {
-		font-size: 100px;
-		font-weight: 500;
-	}
-	
-	@font-face {
-		font-family: 'iconfont';
-		/* project id 363070 */
-		src: url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.eot');
-		src: url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.eot?#iefix') format('embedded-opentype'), url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.woff') format('woff'), url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.ttf') format('truetype'), url('http://at.alicdn.com/t/font_4loj5t4fs4r96bt9.svg#iconfont') format('svg');
-	}
-	
+
+  @font-face {
+  font-family: 'iconfont';  /* project id 363070 */
+  src: url('http://at.alicdn.com/t/font_8fitkxrbovhlrf6r.eot');
+  src: url('http://at.alicdn.com/t/font_8fitkxrbovhlrf6r.eot?#iefix') format('embedded-opentype'),
+  url('http://at.alicdn.com/t/font_8fitkxrbovhlrf6r.woff') format('woff'),
+  url('http://at.alicdn.com/t/font_8fitkxrbovhlrf6r.ttf') format('truetype'),
+  url('http://at.alicdn.com/t/font_8fitkxrbovhlrf6r.svg#iconfont') format('svg');
+}
 	.iconfont {
 		font-family: 'iconfont';
 		/* project id 363070 */

@@ -7,10 +7,35 @@
 		<meta name="format-detection" content="telephone=no">		
 		<title>vue-cli</title>
 	</head>
-
+	<style type="text/css">
+		html {
+		font-size: 100px;
+		font-weight: 500;
+	}
+	body{
+		font-size: 16px;
+	}
+	</style>
 	<body>
 		<div id="app"></div>
 		<!-- built files will be auto injected -->
 	</body>
-
+	<script type="text/javascript">
+		window.onload = ()=>{
+			function setRem(pw, pr) {
+				var html = document.getElementsByTagName("html")[0];
+				var ww = document.body.clientWidth || document.documentElement.clientWidth;
+				html.style.fontSize = ww * pr / pw + "px";
+			}
+			setRem(375, 100)
+		}
+		window.onresize =() =>{
+			function setRem(pw, pr) {
+				var html = document.getElementsByTagName("html")[0];
+				var ww = document.body.clientWidth || document.documentElement.clientWidth;
+				html.style.fontSize = ww * pr / pw + "px";
+			}
+			setRem(375, 100)
+		}
+	</script>
 </html>
