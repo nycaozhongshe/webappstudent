@@ -4,13 +4,13 @@
 
 			<div class="login-form">
 				<div class="login-logo"><img src="../../static/logo.png" class="login-logo-img" /></div>
-				<form @submit.prevent="submit">
-					<input type="text" placeholder="账号" autofocus="autofocus" id="account" v-model="user.name" />
+				<form >
+					<input type="text" placeholder="账号" autofocus="autofocus" id="account" v-model="user.username" />
 					<input type="password" placeholder="密码" id="password" v-model="user.password" />
 					<label for="account" class="iconfont">&#xe61f;</label>
 					<label for="password" class="iconfont">&#xe6b2;</label>
 					<!--<router-link to="/index" tag='span'>登陆</router-link>-->
-					<input type="submit" value="登陆" class="botton">
+					<input type="button" value="登陆" class="botton" @click='submiti'>
 				</form>
 				<div class="about">关于我们</div>
 				<div class="tip" v-if='tip.show'>{{tip.txt}}</div>
@@ -26,8 +26,8 @@
 			return {
 				//todo 这里是data区域
 				user: {
-					name: '',
-					password: '',
+					'username': '',
+					'password': '',
 				},
 				tip: {
 					show: false,
@@ -41,10 +41,15 @@
 		computed: {
 			//TODO 计算区
 		},
+		created(){
+			this.name = window.localStorage.getItem('jndxyjsuser') || ''
+			this.password = window.localStorage.getItem('jndxyjspass')||''
+		},
 		methods: {
 			//TODO 方法区
-			submit() {
-				if(this.user.name && this.user.password) {
+			submiti() {
+				
+				if(this.user.username && this.user.password) {
 					//如果不对
 					this.getApi()
 				} else {
@@ -53,16 +58,22 @@
 				}
 			},
 			getApi() {
-				var formData = JSON.stringify(this.user); // 这里才是你的表单数据
-				this.$http.get('../static/state.json', formData).then((response) => {
+//				var formData = this.user; // 这里才是你的表单数据
+//				var formData = 'username:'+ this.user.username+'&'+'password:'+this.user.password// 这里才是你的表单数据
+				var formData  = {"username":"superadmin","password":"superadmin"}
+				console.log(formData)
+				console.log(typeof formData)
+				this.$http.post('http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileLogin/login',formData).
+				then((response) => {
 					// success callback
-					let state = response.data.statusCode
+					console.log(response)
+					let state = response.status
 					if(state == 200) {
 						//密码和账号都对
-						//验证成功后跳到主页
-						window.localStorage.setItem('jndxyjsuser', this.user.name)
+						//验证成功后跳到主页										
+						window.localStorage.setItem('jndxyjsuser', this.user.username)						
 						window.localStorage.setItem('jndxyjspass', this.user.password)
-						this.$router.push('/index')
+						this.$router.push('index')	
 					} else if(state == 300) {
 						this.tip.txt = '服务器响应错误'
 						this.tipShow()
@@ -79,9 +90,8 @@
 						this.tip.txt = '服务器响应错误'
 						this.tipShow()
 					}
-				}, (response) => {
-					this.tip.txt = '服务器错误'
-					this.tipShow()
+				}).catch((error)=>{
+					console.log('错误')
 				});
 
 			},

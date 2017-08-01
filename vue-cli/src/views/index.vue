@@ -15,8 +15,7 @@
 			</router-link>
 			<router-link to='/personinfo' tag='div'  class='router'>
 				<span class="iconfont logo-icon">&#xe645;</span><!--{{nav2}}-->
-			</router-link>
-			
+			</router-link>	
 			<!--<router-link to='/information' tag='span'>我的</router-link><-->
 		</div>
 		<keep-alive>

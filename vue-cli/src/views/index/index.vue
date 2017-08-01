@@ -42,8 +42,9 @@
 		},
 		created() {
 //			this.indexTitle = this.
-			setTimeout(() => this.pageShow = false, 1000)
+			console.log(111111111)
 			this.getIndexApi()
+			setTimeout(() => this.pageShow = false, 1000)	
 		},
 		methods: {
 			...mapActions([

@@ -32,11 +32,12 @@ const store = new Vuex.Store({
 		getIndexApi(context) {
 			axios({
 					method: 'get',
-					url: '../static/index.json',
-					//      data: context.state.test02
+					url: 'http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileAuthMenu/loadMobileAuthMenuListByDefaultRole',
+					//      data: context.state.test02s
 				}).then((response) => {
+					console.log(11111111111111)
 					if(response.data.statusCode == 200) {
-						let data = response.data.data
+						let data = response.data.objData
 						context.state.indexData = data
 						context.state.nav1 = data[0].title
 						context.state.nav2 = data[1].title
@@ -48,13 +49,12 @@ const store = new Vuex.Store({
 							context.state.page = true
 						}, 1000)
 					}
-				})
-				.catch((error) => {
+				}).catch((error) => {
 					console.log('错误')
-					setTimeout(() => {
-						context.state.tipTxt = '服务器响应失败'
-						context.state.page = true
-					}, 800)
+//					setTimeout(() => {
+//						context.state.tipTxt = '服务器响应失败'
+//						context.state.page = true
+//					}, 800)
 				})
 		},
 		getIndexId1Api(context) {
@@ -85,15 +85,17 @@ const store = new Vuex.Store({
 					context.state.indexId1list[1] = {rows:''}					
 				}),
 				axios({
-					method: 'get',
-//					url: '/km-gradms-core-server/common/msg/sysMessageScope/loadSysMessageScopeList',
-					data: 'msgtzType=3',	        
-					url: '../static/index-id-1.json',					
-				}).then((response) => {					
+					method: 'post',
+					url: '172.25.253.5:8081/km-gradms-core-server/common/msg/sysMessageScope/loadSysMessageScopeList',
+					data: 'msgtzType=3'	        
+//					url: '../static/index-id-1.json',					
+				}).then((response) => {		
+					console.log('22222222222222')
 					response.data.title = '资讯'					
 					context.state.indexId1list[2] = response.data				
 				})
 				.catch((error) => {
+					console.log('1111111111111111')
 					context.state.indexId1list[2] = {rows:''}				
 				})
 		},
