@@ -32,10 +32,11 @@ const store = new Vuex.Store({
 		getIndexApi(context) {
 			axios({
 					method: 'get',
-					url: 'http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileAuthMenu/loadMobileAuthMenuListByDefaultRole',
-					//      data: context.state.test02s
+					url: '../static/index.json'
+//					url: 'http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileAuthMenu/loadMobileAuthMenuListByDefaultRole',
+					//data: context.state.test02s
 				}).then((response) => {
-					console.log(11111111111111)
+					
 					if(response.data.statusCode == 200) {
 						let data = response.data.objData
 						context.state.indexData = data

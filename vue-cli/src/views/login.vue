@@ -4,7 +4,7 @@
 
 			<div class="login-form">
 				<div class="login-logo"><img src="../../static/logo.png" class="login-logo-img" /></div>
-				<form >
+				<form>
 					<input type="text" placeholder="账号" autofocus="autofocus" id="account" v-model="user.username" />
 					<input type="password" placeholder="密码" id="password" v-model="user.password" />
 					<label for="account" class="iconfont">&#xe61f;</label>
@@ -41,14 +41,14 @@
 		computed: {
 			//TODO 计算区
 		},
-		created(){
+		created() {
 			this.name = window.localStorage.getItem('jndxyjsuser') || ''
-			this.password = window.localStorage.getItem('jndxyjspass')||''
+			this.password = window.localStorage.getItem('jndxyjspass') || ''
 		},
 		methods: {
 			//TODO 方法区
 			submiti() {
-				
+
 				if(this.user.username && this.user.password) {
 					//如果不对
 					this.getApi()
@@ -58,12 +58,22 @@
 				}
 			},
 			getApi() {
-//				var formData = this.user; // 这里才是你的表单数据
-//				var formData = 'username:'+ this.user.username+'&'+'password:'+this.user.password// 这里才是你的表单数据
-				var formData  = {"username":"superadmin","password":"superadmin"}
+				//				var formData = this.user; // 这里才是你的表单数据
+				//				var formData = 'username:'+ this.user.username+'&'+'password:'+this.user.password// 这里才是你的表单数据
+				var formData = {
+					"username": "superadmin",
+					"password": "superadmin"
+				}
 				console.log(formData)
 				console.log(typeof formData)
-				this.$http.post('http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileLogin/login',formData).
+				this.$http({
+					url: 'http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileLogin/login',
+					method: 'post',
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					data: formData
+				}).
 				then((response) => {
 					// success callback
 					console.log(response)
@@ -71,9 +81,9 @@
 					if(state == 200) {
 						//密码和账号都对
 						//验证成功后跳到主页										
-						window.localStorage.setItem('jndxyjsuser', this.user.username)						
+						window.localStorage.setItem('jndxyjsuser', this.user.username)
 						window.localStorage.setItem('jndxyjspass', this.user.password)
-						this.$router.push('index')	
+						this.$router.push('index')
 					} else if(state == 300) {
 						this.tip.txt = '服务器响应错误'
 						this.tipShow()
@@ -90,7 +100,7 @@
 						this.tip.txt = '服务器响应错误'
 						this.tipShow()
 					}
-				}).catch((error)=>{
+				}).catch((error) => {
 					console.log('错误')
 				});
 
