@@ -15,7 +15,7 @@ import FastClick from 'fastclick'
 //过滤器
 import 'assets/js/filter.js'
 //组件
-import 'components/index.js'
+import 'components/index.js's
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
