@@ -1,9 +1,12 @@
+
 import Vue from 'vue'
 import App from './App'
 //路由
 import router from './router'
 import axios from 'axios'
+axios.defaults.withCredentials = true
 Vue.prototype.$http = axios
+
 //状态管理 vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)
@@ -14,6 +17,7 @@ import FastClick from 'fastclick'
 
 //过滤器
 import 'assets/js/filter.js'
+
 //组件
 import 'components/index.js'
 Vue.config.productionTip = false

@@ -15,18 +15,6 @@
 			</div>
 		</div>
 		
-		<!--分三個部分渲染-->
-		
-		<!--<div class="wrapper-item">
-			<div class="index-list clearfix">
-				<div class="index-item" v-for="pro in contentList.rows">
-					<router-link :to="{ path:'/details', query: {id: pro.id,title:pro.display} }">
-						<img src="../../../static/20150407120602871.jpg" class="item-logo" />
-						<span>{{pro.display}}</span>
-					</router-link>
-				</div>
-			</div>
-		</div>-->
 	</div>
 </template>
 
@@ -42,7 +30,7 @@
 		},
 		created() {
 //			this.indexTitle = this.
-			console.log(111111111)
+//			console.log(111111111)
 			this.getIndexApi()
 			setTimeout(() => this.pageShow = false, 1000)	
 		},

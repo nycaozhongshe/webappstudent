@@ -32,8 +32,8 @@ const store = new Vuex.Store({
 		getIndexApi(context) {
 			axios({
 					method: 'get',
-					url: '../static/index.json'
-//					url: 'http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileAuthMenu/loadMobileAuthMenuListByDefaultRole',
+//					url: '../static/index.json'
+					url: 'http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileAuthMenu/loadMobileAuthMenuListByRole',
 					//data: context.state.test02s
 				}).then((response) => {
 					

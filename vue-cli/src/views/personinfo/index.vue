@@ -13,8 +13,7 @@
 	export default{
 		methods:{
 			logoff(){
-				localStorage.removeItem('jndxyjsuser')
-				localStorage.removeItem('jndxyjspass')	
+				window.ssessionStorage.removeItem('jndxyjsuser')
 				this.$router.push('/login')
 			}
 		}

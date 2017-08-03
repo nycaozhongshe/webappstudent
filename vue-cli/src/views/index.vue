@@ -6,7 +6,7 @@
 			</router-link>
 			<div class="title">测试学校管理系统</div>
 		</header>
-		<div class="nav" v-if="action">
+		<div class="nav">
 			<router-link to='/index' tag='div' class='router'>
 				<span class="iconfont logo-icon">&#xe610;</span><!--{{nav1}}-->
 			</router-link>

@@ -21,18 +21,23 @@
 </template>
 
 <script type="text/ecmascript-6">
+	var qs = require('qs');
 	export default {
 		data() {
 			return {
 				//todo 这里是data区域
 				user: {
-					'username': '',
-					'password': '',
+					username: '',
+					password: '',
 				},
 				tip: {
 					show: false,
 					txt: ""
 				},
+				saltPwd:{
+					username:'',
+					password:''
+				}
 			}
 		},
 		components: {
@@ -42,13 +47,11 @@
 			//TODO 计算区
 		},
 		created() {
-			this.name = window.localStorage.getItem('jndxyjsuser') || ''
-			this.password = window.localStorage.getItem('jndxyjspass') || ''
+			
 		},
 		methods: {
 			//TODO 方法区
 			submiti() {
-
 				if(this.user.username && this.user.password) {
 					//如果不对
 					this.getApi()
@@ -58,21 +61,18 @@
 				}
 			},
 			getApi() {
-				//				var formData = this.user; // 这里才是你的表单数据
-				//				var formData = 'username:'+ this.user.username+'&'+'password:'+this.user.password// 这里才是你的表单数据
-				var formData = {
-					"username": "superadmin",
-					"password": "superadmin"
-				}
-				console.log(formData)
-				console.log(typeof formData)
+				var  saltPwd = {}
+				saltPwd.password  = this.convertPassword(this.user.username,this.user.password)
+				saltPwd.username  = this.user.username
 				this.$http({
-					url: 'http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileLogin/login',
+					url: 'http://172.25.253.5:8081/km-gradms-core-server/moblile/mobileLogin/login?',
 					method: 'post',
 					headers: {
 						'Content-Type': 'application/x-www-form-urlencoded'
 					},
-					data: formData
+					data: qs.stringify(saltPwd),
+					withCredentials:true 
+					//					responseType: 'json',
 				}).
 				then((response) => {
 					// success callback
@@ -80,9 +80,8 @@
 					let state = response.status
 					if(state == 200) {
 						//密码和账号都对
-						//验证成功后跳到主页										
-						window.localStorage.setItem('jndxyjsuser', this.user.username)
-						window.localStorage.setItem('jndxyjspass', this.user.password)
+						//验证成功后跳到主页	
+						window.sessionStorage.setItem('jndxyjsuser', this.user.username)
 						this.$router.push('index')
 					} else if(state == 300) {
 						this.tip.txt = '服务器响应错误'
@@ -108,8 +107,15 @@
 			tipShow() {
 				this.tip.show = true
 				setTimeout(() => this.tip.show = false, 3000)
-			}
-
+			},
+			//加密方法
+			convertPassword(username, password){
+					//var salt=username+"@zhtframework_94DABGioQOq2tTUO0AXYow";
+					//return hex_md5(salt+password);
+					var saltPwd = hex_md5(password + "{" + username + "}");
+					return saltPwd;
+				}
+			
 		},
 		mounted: function() {
 
